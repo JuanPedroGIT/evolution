@@ -7,7 +7,7 @@ services:
       evolution-redis:
         condition: service_healthy   # ← espera a que Redis esté listo de verdad
     environment:
-      - SERVER_URL=https://evolution.mediatools.me
+      - SERVER_URL=https://evolution.media-tools.me
       - AUTHENTICATION_API_KEY=${EVOLUTION_API_KEY}
       - DATABASE_ENABLED=true
       - DATABASE_PROVIDER=postgresql
@@ -30,7 +30,7 @@ services:
     networks:
       - shared-network
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080 || exit 1"]
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost:8080 || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
